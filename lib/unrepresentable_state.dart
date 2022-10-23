@@ -18,7 +18,7 @@
 ///   https://dart.dev/guides/libraries/create-library-packages#documenting-a-library and
 ///   https://dart.dev/guides/language/effective-dart/documentation
 ///
-export 'src/auth_types/login_id.dart' show LoginId;
+export 'src/auth_types/id.dart' show Id;
 export 'src/auth_types/name_space_url.dart' show NameSpaceUrl;
 export 'src/auth_types/password.dart' show Password;
 export 'src/base_types/number/natural_number.dart' show NaturalNumber;
