@@ -22,15 +22,15 @@ import '../../exceptions/exceptions.dart';
 /// * [Numbers](https://dart.dev/guides/language/numbers) in
 /// [A tour of the Dart language](https://dart.dev/guides/language/language-tour).
 ///
-class WholeNumber extends Equatable {
+abstract class WholeNumber extends Equatable {
   WholeNumber(
     int value,
   ) {
-    if (value < 1) {
+    if (value < 0) {
       throw NumberValueException(
         ExceptionMessage(
           'The number cannot be'
-          ' less that zero.',
+          ' less than zero.',
         ),
       );
     }

@@ -1,3 +1,4 @@
+import '../../exceptions/exception_message.dart';
 import '../../exceptions/exceptions.dart';
 import 'maybe_empty_string.dart';
 
@@ -40,6 +41,8 @@ abstract class NonEmptyString extends MaybeEmptyString {
 /// [_defaultValidators] are appended to the list of validators, thus only
 /// called if the list of validators has not thrown a validation exception.
 List<Function> _defaultValidators = [
-  (String value) =>
-      {if (value.trimRight().isEmpty) throw StringInvalidException()},
+  (String value) => {
+        if (value.trimRight().isEmpty)
+          throw StringInvalidException(ExceptionMessage('It must not be empty.'))
+      },
 ];

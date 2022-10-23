@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-
 /// A [MaybeEmptyString] represents a possibly zero length [String] after
 /// trimming trailing spaces.
 ///
@@ -11,10 +10,10 @@ abstract class MaybeEmptyString extends Equatable {
     String value, {
     List<Function>? validators,
   }) {
-    _value = validate(value.trimRight(), validators ?? []);
+    _value = _validate(value.trimRight(), validators ?? []);
   }
 
-  static String validate(String value, List<Function> validators) {
+  static String _validate(String value, List<Function> validators) {
     for (var i = 0; i < validators.length; i++) {
       final test = validators[i] as Function(String);
       test(value);

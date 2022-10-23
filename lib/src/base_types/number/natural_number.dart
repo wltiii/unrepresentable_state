@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import '../../exceptions/exception_message.dart';
 import '../../exceptions/exceptions.dart';
 
-
 /// A [NaturalNumber] represents an integer that is greater than
 /// zero.
 ///
@@ -23,7 +22,7 @@ import '../../exceptions/exceptions.dart';
 /// * [Numbers](https://dart.dev/guides/language/numbers) in
 /// [A tour of the Dart language](https://dart.dev/guides/language/language-tour).
 ///
-class NaturalNumber extends Equatable {
+abstract class NaturalNumber extends Equatable {
   NaturalNumber(
     int value,
   ) {
@@ -31,7 +30,7 @@ class NaturalNumber extends Equatable {
       throw NumberValueException(
         ExceptionMessage(
           'The number cannot be'
-          ' less that one.',
+          ' less than one.',
         ),
       );
     }

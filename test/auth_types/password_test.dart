@@ -2,9 +2,8 @@ import 'package:test/test.dart';
 import 'package:unrepresentable_state/unrepresentable_state.dart';
 
 void main() {
-
   group('construction', () {
-    test('constructs', () {
+    test('constructs successfully', () {
       const value = r'pAs$w0rd';
       final password = Password(value);
       expect(password, isA<NonEmptyString>());
@@ -75,7 +74,7 @@ void main() {
                     'Invalid value. Password is invalid. It must contain at '
                         'least one upper case letter, one lower case letter, '
                         'one number and one of '
-                    r'!$>_}.<"|+):/*+&^.',
+                        r'!$>_}.<"|+):/*+&^.',
           ),
         ),
       );
@@ -94,7 +93,7 @@ void main() {
                     'Invalid value. Password is invalid. It must contain at '
                         'least one upper case letter, one lower case letter, '
                         'one number and one of '
-                    r'!$>_}.<"|+):/*+&^.',
+                        r'!$>_}.<"|+):/*+&^.',
           ),
         ),
       );
@@ -113,7 +112,7 @@ void main() {
                     'Invalid value. Password is invalid. It must contain at '
                         'least one upper case letter, one lower case letter, '
                         'one number and one of '
-                    r'!$>_}.<"|+):/*+&^.',
+                        r'!$>_}.<"|+):/*+&^.',
           ),
         ),
       );

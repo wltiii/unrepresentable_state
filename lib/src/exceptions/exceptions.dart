@@ -1,4 +1,3 @@
-
 import 'exception_message.dart';
 
 /// [AppException] is the abstract class upon which all other
@@ -10,10 +9,6 @@ import 'exception_message.dart';
 /// Each  [AppException] has a default [ExceptionMessage] and an optional
 /// [AdditionalInfo] should the developer feels it necessary
 /// to provide further information.
-///
-/// The [ExceptionMessage] and [AdditionalInfo] are concatenated to for
-/// a [String] message that is exposed through a getter as
-/// wells as toString method.
 abstract class AppException implements Exception {
   AppException(ExceptionMessage message) {
     _message = message.value;
@@ -24,7 +19,7 @@ abstract class AppException implements Exception {
   String get message => _message;
 
   @override
-  String toString() => message;
+  String toString() => _message;
 }
 
 // Define specific exceptions below. And keep the classes sorted by name.
@@ -52,7 +47,8 @@ class ServerException extends AppException {
 /// [StringInvalidException] is thrown when an invalid value is detected that
 /// cannot be handled otherwise.
 class StringInvalidException extends AppException {
-  StringInvalidException() : super(ExceptionMessage('Invalid value.'));
+  StringInvalidException(ExceptionMessage message)
+      : super(ExceptionMessage('Invalid value. ${message.value}'));
 }
 
 /// [UnsupportedException] is thrown when the requested action is not
