@@ -25,6 +25,7 @@ export 'src/base_types/number/natural_number.dart' show NaturalNumber;
 export 'src/base_types/number/whole_number.dart' show WholeNumber;
 export 'src/base_types/string/maybe_empty_string.dart' show MaybeEmptyString;
 export 'src/base_types/string/non_empty_string.dart' show NonEmptyString;
+export 'src/exceptions/exception_message.dart' show ExceptionMessage;
 export 'src/exceptions/exceptions.dart'
     show
         AppException,
