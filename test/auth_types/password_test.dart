@@ -1,4 +1,6 @@
 import 'package:test/test.dart';
+import 'package:unrepresentable_state/src/auth_types/validators.dart';
+import 'package:unrepresentable_state/src/exceptions/exceptions.dart';
 import 'package:unrepresentable_state/unrepresentable_state.dart';
 
 void main() {
@@ -11,18 +13,30 @@ void main() {
     });
 
     test('when password is empty string exception is thrown', () {
-      expect(
-        () => Password(''),
-        throwsA(
-          predicate(
-            (e) =>
-                e is ValueException &&
-                e.message ==
-                    'Invalid value. '
-                        'Password must be a minimum of six characters.',
-          ),
-        ),
-      );
+      try {
+        print('creating password');
+        Password('');
+      } catch (e) {
+        print('exception!');
+        // StringLengthException f = e;
+        // final f = e as StringLengthException;
+        // print('threw exception ${f.message}');
+        // print('threw exception ${e.message}');
+      }
+
+      expect(Password(''), throwsA(isA<StringLengthException>()));
+      // expect(Password(''), throwsA(isA<StringLengthException>('Invalid value. It must be a minimum of six characters.')));
+      // expect(
+      //   () => Password(''),
+      //   throwsA(isA(StringLengthException)
+      //     // predicate((e) => e is StringLengthException
+      //         // e is StringLengthException &&
+      //         // e.message ==
+      //         //     'Invalid value. '
+      //         //         'Password must be a minimum of six characters.',
+      //         ),
+      //   ),
+      // );
     });
 
     test('when less than six characters exception is thrown', () {
@@ -37,6 +51,31 @@ void main() {
                 e.message ==
                     'Invalid value. '
                         'Password must be a minimum of six characters.',
+          ),
+        ),
+      );
+    });
+
+    test('when less than six characters function throws exception', () {
+      const value = r'A';
+
+      try {
+        print('validating!');
+        stringLengthValidator(value);
+      } catch (e) {
+        print('exception!');
+        print('threw exception ${e}');
+      }
+
+      expect(
+        () => stringLengthValidator(value),
+        throwsA(
+          predicate(
+            (e) =>
+                e is StringLengthException &&
+                e.message ==
+                    'Invalid value. '
+                        'It must be a minimum of six characters.',
           ),
         ),
       );

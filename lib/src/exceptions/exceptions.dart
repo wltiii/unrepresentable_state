@@ -36,6 +36,19 @@ class NumberValueException extends AppException {
       : super(ExceptionMessage('Invalid value. ${message.value}'));
 }
 
+/// [PasswordFormatException] is thrown when a Password is improperly formatted,
+/// i.e. it has one upper case letter, one lower case letter, one number and one
+/// special character of !$>_}.<"|+):/*+&^..
+class PasswordFormatException extends ValueException {
+  PasswordFormatException(ExceptionMessage message)
+      : super(ExceptionMessage(
+          'Password is invalid. '
+          'It must contain at least one upper case letter, '
+          'one lower case letter, one number and '
+          r'one of !$>_}.<"|+):/*+&^.',
+        ));
+}
+
 /// [ServerException] is thrown when a call to an external
 /// service, database, etc. does not complete normally. Errors, faults, etc.,
 /// that can be expected are NOT exceptions.
@@ -49,6 +62,18 @@ class ServerException extends AppException {
 class StringInvalidException extends AppException {
   StringInvalidException(ExceptionMessage message)
       : super(ExceptionMessage('Invalid value. ${message.value}'));
+  //
+  // String get message => super.message;
+}
+
+/// [StringLengthException] is thrown when a String, for example a Password,
+/// contains fewer than the minimum number of characters. It takes an optional
+/// [ExceptionMessage] that states the minimum requirement is six characters.
+class StringLengthException extends ValueException {
+  StringLengthException(ExceptionMessage? message)
+      : super(message ?? ExceptionMessage('It must be a minimum of six characters.'));
+
+  // String get message => super.message;
 }
 
 /// [UnsupportedException] is thrown when the requested action is not
