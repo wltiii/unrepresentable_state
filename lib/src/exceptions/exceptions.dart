@@ -36,19 +36,6 @@ class NumberValueException extends AppException {
       : super(ExceptionMessage('Invalid value. ${message.value}'));
 }
 
-/// [PasswordFormatException] is thrown when a Password is improperly formatted,
-/// i.e. it has one upper case letter, one lower case letter, one number and one
-/// special character of !$>_}.<"|+):/*+&^..
-class PasswordFormatException extends ValueException {
-  PasswordFormatException(ExceptionMessage message)
-      : super(ExceptionMessage(
-          'Password is invalid. '
-          'It must contain at least one upper case letter, '
-          'one lower case letter, one number and '
-          r'one of !$>_}.<"|+):/*+&^.',
-        ));
-}
-
 /// [ServerException] is thrown when a call to an external
 /// service, database, etc. does not complete normally. Errors, faults, etc.,
 /// that can be expected are NOT exceptions.
@@ -57,26 +44,68 @@ class ServerException extends AppException {
       : super(ExceptionMessage('Server exception. ${message.value}'));
 }
 
+/// [StringFormatException] is thrown when a String does not meet formatting
+/// requirements. It is implemented through factory constructors.
+///
+/// [StringFormatException.password] is thrown when a Password is improperly formatted,
+/// i.e. it has one upper case letter, one lower case letter, one number and one
+/// special character of !$>_}.<"|+):/*+&^..
+class StringFormatException extends AppException {
+  StringFormatException._(ExceptionMessage message) : super(message);
+
+  factory StringFormatException.password() {
+    return StringFormatException._(
+      ExceptionMessage(
+        'Password is invalid. '
+            'It must contain at least one upper case letter, '
+            'one lower case letter, one number and '
+        r'one of !$>_}.<"|+):/*+&^.',
+      ),
+    );
+  }
+}
+
 /// [StringInvalidException] is thrown when an invalid value is detected that
 /// cannot be handled otherwise.
 class StringInvalidException extends AppException {
   StringInvalidException(ExceptionMessage message)
       : super(ExceptionMessage('Invalid value. ${message.value}'));
-  //
-  // String get message => super.message;
 }
 
+// TODO allow for min/max range and max only
 /// [StringLengthException] is thrown when a String, for example a Password,
-/// contains fewer than the minimum number of characters. It takes an optional
-/// [ExceptionMessage] that states the minimum requirement is six characters.
+/// contains fewer than the minimum number of characters.
+///
+/// [StringLengthException.sixRequired] states that the minimum allowable
+/// length of the string is six characters.
+///
+/// [StringLengthException.minLength] Takes an integer for that represents the
+/// minimum allowable length of the string and constructs an exception
+/// therefrom. For example:
+///
+/// ```dart
+/// expect(
+///     StringLengthException.minLength(999).message,
+///     equals('Invalid value. '
+///        'It must be a minimum of 999 characters.'),
+/// );
+/// [UnsupportedException] is thrown when the requested action is not
 class StringLengthException extends ValueException {
-  StringLengthException(ExceptionMessage? message)
-      : super(message ?? ExceptionMessage('It must be a minimum of six characters.'));
+  StringLengthException._(ExceptionMessage message) : super(message);
 
-  // String get message => super.message;
+  factory StringLengthException.sixRequired() {
+    return StringLengthException._(_exception(6));
+  }
+
+  factory StringLengthException.minLength(int minLength) {
+    return StringLengthException._(_exception(minLength));
+  }
+
+  static ExceptionMessage _exception(int value) =>
+      ExceptionMessage('It must be a minimum of $value characters.');
 }
 
-/// [UnsupportedException] is thrown when the requested action is not
+/// ```
 /// supported by the application.
 class UnsupportedException extends AppException {
   UnsupportedException(ExceptionMessage message)

@@ -7,12 +7,12 @@ description: >
 
 repository: https://github.com/wltiii/unrepresentable_state
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
   equatable: ^2.0.5
   uuid: ^3.0.6
 
 dev_dependencies:
-  lints: ^2.0.0
-  test: ^1.21.6
+  lints: ^2.0.1
+  test: ^1.21.7

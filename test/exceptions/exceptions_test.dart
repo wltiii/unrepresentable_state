@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-import 'package:unrepresentable_state/src/exceptions/exception_message.dart';
 import 'package:unrepresentable_state/src/exceptions/exceptions.dart';
 import 'package:unrepresentable_state/unrepresentable_state.dart';
 
@@ -35,10 +34,20 @@ void main() {
   });
 
   test('ServerException constructs successfully', () {
-    const value = 'Additional message.';
+    const value = 'A server exception';
     final givenMessage = ExceptionMessage(value);
     final expectedMessage = 'Server exception. $value';
     final given = ServerException(givenMessage);
+    expect(given, isA<AppException>());
+    expect(given.message, equals(expectedMessage));
+  });
+
+  test('StringFormatException.password() constructs successfully', () {
+    const expectedMessage = 'Password is invalid. '
+        'It must contain at least one upper case letter, '
+        'one lower case letter, one number and '
+        r'one of !$>_}.<"|+):/*+&^.';
+    final given = StringFormatException.password();
     expect(given, isA<AppException>());
     expect(given.message, equals(expectedMessage));
   });
@@ -49,6 +58,25 @@ void main() {
     final expectedMessage = 'Invalid value. $value';
     final given = StringInvalidException(givenMessage);
     expect(given, isA<AppException>());
+    expect(given.message, equals(expectedMessage));
+  });
+
+  test('StringLengthException.defaultMessage constructs successfully', () {
+    final expectedMessage = 'Invalid value. '
+        'It must be a minimum of 6 characters.';
+    final given = StringLengthException.sixRequired();
+    expect(given, isA<AppException>());
+    expect(given, isA<ValueException>());
+    expect(given.message, equals(expectedMessage));
+  });
+
+  test('StringLengthException.withMessage constructs successfully', () {
+    const value = 999;
+    final expectedMessage = 'Invalid value. '
+        'It must be a minimum of 999 characters.';
+    final given = StringLengthException.minLength(value);
+    expect(given, isA<AppException>());
+    expect(given, isA<ValueException>());
     expect(given.message, equals(expectedMessage));
   });
 

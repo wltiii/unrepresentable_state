@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:test/test.dart';
-import 'package:unrepresentable_state/src/exceptions/exception_message.dart';
 import 'package:unrepresentable_state/unrepresentable_state.dart';
 
 class MaybeEmptyStringTester extends MaybeEmptyString {

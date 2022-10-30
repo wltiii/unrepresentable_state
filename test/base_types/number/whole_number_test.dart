@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:test/test.dart';
-import 'package:unrepresentable_state/src/base_types/number/whole_number.dart';
 import 'package:unrepresentable_state/unrepresentable_state.dart';
 
 class WholeNumberTester extends WholeNumber {

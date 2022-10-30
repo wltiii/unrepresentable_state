@@ -2,7 +2,6 @@ import 'package:uuid/uuid.dart';
 import 'package:uuid/uuid_util.dart';
 
 import '../../unrepresentable_state.dart';
-import '../exceptions/exception_message.dart';
 
 /// [Id] is a unique identifier of a user.
 ///
