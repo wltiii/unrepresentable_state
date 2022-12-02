@@ -8,6 +8,9 @@ import '../../unrepresentable_state.dart';
 /// It is a [NonEmptyString], thus  must not be empty. Instantiating with an
 /// empty String will throw a [ValueException].
 ///
+/// Implementors should create unique types per domain the domain requirements
+/// in accordance with Type Driven Design principles.
+///
 class Id extends NonEmptyString {
   Id(String value)
       : super(
@@ -16,7 +19,7 @@ class Id extends NonEmptyString {
             (String value) => {
                   if (value.trimRight().isEmpty)
                     throw ValueException(
-                      ExceptionMessage('Login id must not be empty.'),
+                      ExceptionMessage('Id must not be empty.'),
                     ),
                 },
           ],
