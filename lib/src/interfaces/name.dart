@@ -17,13 +17,5 @@ abstract class Name extends NonEmptyString {
   Name(String value)
       : super(
           value,
-          validators: [
-            (String value) => {
-                  if (value.trimRight().isEmpty)
-                    throw ValueException(
-                      ExceptionMessage('Name must not be empty.'),
-                    ),
-                },
-          ],
         );
 }

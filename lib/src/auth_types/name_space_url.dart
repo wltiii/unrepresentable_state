@@ -1,6 +1,6 @@
-import '../base_types/string/non_empty_string.dart';
-import '../exceptions/exception_message.dart';
-import '../exceptions/exceptions.dart';
+import 'package:unrepresentable_state/src/exceptions/exception_message.dart';
+import 'package:unrepresentable_state/src/exceptions/exceptions.dart';
+import 'package:unrepresentable_state/unrepresentable_state.dart' show NonEmptyString;
 
 class NameSpaceUrl extends NonEmptyString {
   NameSpaceUrl(String value)

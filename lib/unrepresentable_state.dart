@@ -18,13 +18,9 @@
 ///   https://dart.dev/guides/libraries/create-library-packages#documenting-a-library and
 ///   https://dart.dev/guides/language/effective-dart/documentation
 ///
-export 'src/auth_types/id.dart' show Id;
-export 'src/auth_types/name_space_url.dart' show NameSpaceUrl;
-export 'src/auth_types/password.dart' show Password;
-export 'src/base_types/number/natural_number.dart' show NaturalNumber;
-export 'src/base_types/number/whole_number.dart' show WholeNumber;
-export 'src/base_types/string/maybe_empty_string.dart' show MaybeEmptyString;
-export 'src/base_types/string/non_empty_string.dart' show NonEmptyString;
+export 'src/auth_types/auth_types.dart' show Id, NameSpaceUrl, Password;
+export 'src/base_types/base_types.dart'
+    show NaturalNumber, WholeNumber, MaybeEmptyString, NonEmptyString;
 export 'src/exceptions/exception_message.dart' show ExceptionMessage;
 export 'src/exceptions/exceptions.dart'
     show
@@ -35,3 +31,4 @@ export 'src/exceptions/exceptions.dart'
         StringInvalidException,
         UnsupportedException,
         ValueException;
+export 'src/interfaces/name.dart' show Name;

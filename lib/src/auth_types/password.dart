@@ -1,6 +1,5 @@
 import 'package:unrepresentable_state/src/auth_types/validators.dart';
-
-import '../base_types/string/non_empty_string.dart';
+import 'package:unrepresentable_state/unrepresentable_state.dart' show NonEmptyString;
 
 /// [Password] is a container for a validated password.
 ///
