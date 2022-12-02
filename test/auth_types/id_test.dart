@@ -2,15 +2,15 @@ import 'package:test/test.dart';
 import 'package:unrepresentable_state/unrepresentable_state.dart';
 
 void main() {
-  group('LoginId', () {
+  group('Id', () {
     test('default constructs successfully', () {
       const value = r'billy';
-      final loginId = Id(value);
-      expect(loginId, isA<NonEmptyString>());
-      expect(loginId.value, equals(value));
+      final id = Id(value);
+      expect(id, isA<NonEmptyString>());
+      expect(id.value, equals(value));
     });
 
-    test('default throws exception when LoginId is empty', () {
+    test('default throws exception when Id is empty', () {
       expect(
         () => Id(''),
         throwsA(
@@ -19,29 +19,29 @@ void main() {
                 e is ValueException &&
                 e.message ==
                     'Invalid value. '
-                        'Login id must not be empty.',
+                        'Id must not be empty.',
           ),
         ),
       );
     });
 
     test('factory timeBasedUuid constructs', () {
-      final loginId = Id.timeBasedUuid();
-      expect(loginId, isA<NonEmptyString>());
-      expect(loginId.value.length, equals(36));
+      final id = Id.timeBasedUuid();
+      expect(id, isA<NonEmptyString>());
+      expect(id.value.length, equals(36));
     });
 
     test('factory randomUuid constructs', () {
-      final loginId = Id.randomUuid();
-      expect(loginId, isA<NonEmptyString>());
-      expect(loginId.value.length, equals(36));
+      final id = Id.randomUuid();
+      expect(id, isA<NonEmptyString>());
+      expect(id.value.length, equals(36));
     });
 
     test('factory namespaceUuid constructs', () {
       final namespace = NameSpaceUrl('https://www.google.com/)');
-      final loginId = Id.namespaceUuid(namespace);
-      expect(loginId, isA<NonEmptyString>());
-      expect(loginId.value.length, equals(36));
+      final id = Id.namespaceUuid(namespace);
+      expect(id, isA<NonEmptyString>());
+      expect(id.value.length, equals(36));
     });
   });
 }

@@ -11,6 +11,7 @@ import '../../unrepresentable_state.dart';
 /// Implementors should create unique types per domain the domain requirements
 /// in accordance with Type Driven Design principles.
 ///
+// TODO(wltiii): ideally this should be an abstract implementation. We want implementors to create unique instances.
 class Id extends NonEmptyString {
   Id(String value)
       : super(
@@ -25,23 +26,35 @@ class Id extends NonEmptyString {
           ],
         );
 
-  factory Id.timeBasedUuid() {
-    final uuid = Uuid().v1(options: {
-      'node': [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],
-      'clockSeq': 0x1234,
-      'mSecs': DateTime.utc(2011, 11, 01).millisecondsSinceEpoch,
-      'nSecs': 5678
-    }).toString();
-    return Id(uuid);
-  }
+  Id.timeBasedUuid()
+      : super(
+          Uuid().v1(
+            options: {
+              'node': [0x01, 0x23, 0x45, 0x67, 0x89, 0xab],
+              'clockSeq': 0x1234,
+              'mSecs': DateTime.utc(2011, 11, 01).millisecondsSinceEpoch,
+              'nSecs': 5678
+            },
+          ).toString(),
+        );
 
-  factory Id.randomUuid() {
-    final uuid = Uuid().v4(options: {'rng': UuidUtil.cryptoRNG}).toString();
-    return Id(uuid);
-  }
+  Id.randomUuid()
+      : super(
+          Uuid().v4(options: {'rng': UuidUtil.cryptoRNG}).toString(),
+        );
 
-  factory Id.namespaceUuid(NameSpaceUrl namespace) {
-    final uuid = Uuid().v5(Uuid.NAMESPACE_URL, namespace.value).toString();
-    return Id(uuid);
-  }
+  // Id.randomUuid() {
+  //   final uuid = Uuid().v4(options: {'rng': UuidUtil.cryptoRNG}).toString();
+  //   return Id(uuid);
+  // }
+  //
+
+  Id.namespaceUuid(NameSpaceUrl namespace)
+      : super(
+          Uuid().v5(Uuid.NAMESPACE_URL, namespace.value).toString(),
+        );
+  // Id.namespaceUuid(NameSpaceUrl namespace) {
+  //   final uuid = Uuid().v5(Uuid.NAMESPACE_URL, namespace.value).toString();
+  //   return Id(uuid);
+  // }
 }
